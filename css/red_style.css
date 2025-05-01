@@ -1,0 +1,45 @@
+body {
+    margin: 0;
+    padding: 0;
+    background-color: black;
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+    font-family: sans-serif;
+    position: relative;
+  }
+  
+  #flashlight-icon {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 3; /* Ensures the icon is always above the overlay */
+  }
+  
+  #icon-img {
+    width: 50px; /* Adjust based on your icon size */
+    height: 50px;
+  }
+  
+  h3 {
+    position: absolute;
+    top: 10px;
+    width: 100%;
+    text-align: center;
+    font-size: 16px;
+    color: white;
+    z-index: 2;
+  }
+  
+  #overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: red;
+    opacity: 0;
+    transition: opacity 0.2s ease;
+    z-index: 1; /* The overlay is now below the icon */
+  }
