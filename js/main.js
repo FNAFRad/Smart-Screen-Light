@@ -27,6 +27,6 @@ document.addEventListener('keydown', (e) => {
     }
   } else if (e.key === '5') {
     // Redirect to a new HTML page when 5 is pressed
-    window.location.href = '/html/list.html'; // Replace 'newpage.html' with your file
+    window.location.href = 'html/list.html'; // Replace 'newpage.html' with your file
   }
 });
