@@ -5,5 +5,5 @@
   <li>Brightness Control (Using the Keys 4 and 6)</li>
   <li>Color Options (Using the Key 5 to acess the colors and Arrow Keys to move)</li>
 </ol>
-<h1>Live Demo <a href='https://fnafrad.github.io/Smart-Screen-Light-KaiOS/'>Here</a></h1>
+<h1>Live Demo <a href='https://fnafrad.github.io/Smart-Screen-Light-Kaios/'>Here</a></h1>
 <h1>Enjoy :)</h1>
