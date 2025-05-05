@@ -3,6 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script src="kaiads.v5.min.js"></script>
   <title>Smart Light</title>
   <style>
     body {
@@ -78,32 +79,33 @@
       </div>
 
   <!-- Instruction Text -->
-  <h3 id="instructions">Press 6 to increase brightness by 10%, 4 to decrease by 10%, 5 for more Color Options, 2 for click Ad, and 1 to close Ad</h3>
+  <h3 id="instructions">Press 6 to increase brightness by 10%, 4 to decrease by 10%, 5 for more Color Options, and 2 for the Ad</h3>
 
   <!-- Overlay for flashlight effect -->
   <div id="overlay"></div>
   <h2 id="adtext">Sponsored</h2>
   <div id='ad-container'></div>
   <script>
+    let ad = null; // Declare ad in global scope
+  
     getKaiAd({
       publisher: '6422c251-9106-4139-9b30-22bf659932f3',
-        test: 1, // test = 1 during testing
-        h: 264,
-        w: 240,
-        container: document.getElementById('ad-container'),
+      test: 1,
+      h: 264,
+      w: 240,
+      container: document.getElementById('ad-container'),
       onerror: (err) => console.error('Error:', err),
-      onready: (ad) => {
-            // Ad Events
-            ad.on('display', () => console.log('Ad displayed'));
-            ad.on('close', () => console.log('Ad closed'));
-            ad.on('click', () => console.log('Ad clicked'));
-    
-            // Ad is ready to be displayed
-        // calling 'display' will display the ad
+      onready: (_ad) => {
+        ad = _ad; // Save ad object to global variable
+  
+        ad.on('display', () => console.log('Ad displayed'));
+        ad.on('close', () => console.log('Ad closed'));
+        ad.on('click', () => console.log('Ad clicked'));
+  
         ad.call('display');
       }
     });
-  </script>
+  </script>  
   <script>
     let brightness = 0;
 
@@ -137,8 +139,6 @@ document.addEventListener('keydown', (e) => {
     }
   } else if (e.key === '2') {
     ad.call('click');
-  } else if (e.key === '1') {
-    ad.call('close');
   } else if (e.key === '5') {
     // Redirect to a new HTML page when 5 is pressed
     window.location.href = 'list.html'; // Replace 'newpage.html' with your file
