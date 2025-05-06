@@ -57,7 +57,7 @@
       top: 60%;
       width: 100%;
       height: auto;
-      text-align: left;
+      text-align: center;
       font-size: 16px;
       color: white;
       z-index: 2;
@@ -67,8 +67,9 @@
       width: 240px;
       height: auto;
       top: 65%;
-      align-content: center;
-      z-index: 3;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 3;    
     }
   </style>
 </head>
@@ -79,33 +80,44 @@
       </div>
 
   <!-- Instruction Text -->
-  <h3 id="instructions">Press 6 to increase brightness by 10%, 4 to decrease by 10%, and 5 for more Color Options</h3>
+  <h3 id="instructions">Press 6 to increase brightness by 10%, 4 to decrease by 10%, 5 for more Color Options, and 2 for the Ad</h3>
 
   <!-- Overlay for flashlight effect -->
   <div id="overlay"></div>
   <h2 id="adtext">Sponsored</h2>
-  <div id='ad-container'></div>
+  <div id='ad-container' class="items"></div>
   <script>
-    let ad = null; // Declare ad in global scope
+    let ad = null;
   
-    getKaiAd({
-      publisher: '6422c251-9106-4139-9b30-22bf659932f3',
-      test: 1,
-      h: 264,
-      w: 240,
-      container: document.getElementById('ad-container'),
-      onerror: (err) => console.error('Error:', err),
-      onready: (_ad) => {
-        ad = _ad; // Save ad object to global variable
+    document.addEventListener("DOMContentLoaded", () => {
+      getKaiAd({
+        publisher: '6422c251-9106-4139-9b30-22bf659932f3',
+        app: 'Smart Screen Light',
   
-        ad.on('display', () => console.log('Ad displayed'));
-        ad.on('close', () => console.log('Ad closed'));
-        ad.on('click', () => console.log('Ad clicked'));
+        h: 30,
+        w: 180,
   
-        ad.call('display');
-      }
+        container: document.getElementById('ad-container'),
+  
+        onerror: err => console.error('Custom catch:', err),
+  
+        onready: (_ad) => {
+          ad = _ad;
+  
+          // Optional event logging
+          ad.on('display', () => console.log('Ad displayed'));
+          ad.on('click', () => console.log('Ad clicked'));
+          ad.on('close', () => console.log('Ad closed'));
+  
+          ad.call('display', {
+            tabindex: 0,
+            navClass: 'items',     // Make sure #ad-container has this class if needed
+            display: 'block'
+          });
+        }
+      });
     });
-  </script>  
+  </script>
   <script>
     let brightness = 0;
 
@@ -137,8 +149,10 @@ document.addEventListener('keydown', (e) => {
       brightness -= 10;
       updateBrightness();
     }
-  } else if (e.key === 'SoftLeft') {
-    ad.call('click');
+  } else if (e.key === '2') {
+    if (ad) {
+      ad.call('click');
+    }  
   } else if (e.key === '5') {
     // Redirect to a new HTML page when 5 is pressed
     window.location.href = 'list.html'; // Replace 'newpage.html' with your file
