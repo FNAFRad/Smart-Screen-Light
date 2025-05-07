@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html manifest="offline.manifest"></html>
+<head>
+  <meta charset="UTF-8">
+  <title>SOS Light – Two Morse Code Modes</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    html, body {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      transition: background-color 0.2s;
+      font-family: 'Open Sans', 'Noto Sans', sans-serif;
+    }
+    /* Overlay instructions */
+    h3 {
+        position: absolute;
+        top: 10px;
+        width: 100%;
+        height: auto;
+        text-align: center;
+        font-size: 14px;
+        color: white;
+        z-index: 2;
+      }
+
+      h1 {
+        position: absolute;
+        top: 10px;
+        width: 100%;
+        height: auto;
+        text-align: center;
+        font-size: 14px;
+        color: white;
+        z-index: 2;
+      }
+
+      #sos-icon {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        z-index: 3; /* Ensures the icon is always above the overlay */
+      }
+  </style>
+</head>
+<body>
+    <h3>Press 4 to toggle SOS blinking in morse code without sound, Press 6 to toggle SOS blinking in morse code with sound and Press 5 for more color options</h3>
+    <div id="sos-icon"><h1>SOS</h1></div>
+  <script>
+    // Global state: currentMode can be "none", "mode4" (SOS without sound), or "mode6" (SOS with sound).
+    let currentMode = "none";
+    let blinkTimeoutId = null;
+    // Start with a steady red screen.
+    document.body.style.backgroundColor = "red";
+
+    // Web Audio API beep function (used only in mode6).
+    let audioCtx;
+    function playBeep(duration, frequency, volume) {
+      if (!audioCtx) {
+        audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+      }
+      const oscillator = audioCtx.createOscillator();
+      const gainNode = audioCtx.createGain();
+      oscillator.connect(gainNode);
+      gainNode.connect(audioCtx.destination);
+      oscillator.frequency.value = frequency;
+      gainNode.gain.value = volume;
+      oscillator.start();
+      setTimeout(() => oscillator.stop(), duration);
+    }
+
+    // Morse code durations in milliseconds.
+    const dotDuration   = 300;                    // A "dot" lasts 300 ms.
+    const dashDuration  = dotDuration * 3;          // A "dash" lasts 900 ms.
+    const gapDuration   = 300;                    // Gap between flashes.
+    const letterGap     = 700;                    // Gap after a letter.
+    const sequenceGap   = 1500;                   // Gap after an entire SOS sequence.
+
+    // Define the SOS Morse pattern:
+    // S: dot, dot, dot then letter gap;
+    // O: dash, dash, dash then letter gap;
+    // S: dot, dot, dot then sequence gap.
+    const sosPattern = [
+      // Letter S (three dots)
+      { state: "on", duration: dotDuration },
+      { state: "off", duration: gapDuration },
+      { state: "on", duration: dotDuration },
+      { state: "off", duration: gapDuration },
+      { state: "on", duration: dotDuration },
+      { state: "off", duration: letterGap },
+      // Letter O (three dashes)
+      { state: "on", duration: dashDuration },
+      { state: "off", duration: gapDuration },
+      { state: "on", duration: dashDuration },
+      { state: "off", duration: gapDuration },
+      { state: "on", duration: dashDuration },
+      { state: "off", duration: letterGap },
+      // Letter S (three dots)
+      { state: "on", duration: dotDuration },
+      { state: "off", duration: gapDuration },
+      { state: "on", duration: dotDuration },
+      { state: "off", duration: gapDuration },
+      { state: "on", duration: dotDuration },
+      { state: "off", duration: sequenceGap }
+    ];
+
+    // Clear any scheduled blinking.
+    function clearBlink() {
+      if (blinkTimeoutId !== null) {
+        clearTimeout(blinkTimeoutId);
+        blinkTimeoutId = null;
+      }
+    }
+
+    // SOS blinking mode WITH sound.
+    function sosBlinkWithSound(index) {
+      if (currentMode !== "mode6") return; // Stop if mode changed.
+      const step = sosPattern[index];
+      if (step.state === "on") {
+        document.body.style.backgroundColor = "red";
+        playBeep(step.duration, 600, 0.5);
+      } else {
+        document.body.style.backgroundColor = "black";
+      }
+      const nextIndex = (index + 1) % sosPattern.length;
+      blinkTimeoutId = setTimeout(() => sosBlinkWithSound(nextIndex), step.duration);
+    }
+
+    // SOS blinking mode WITHOUT sound.
+    function sosBlinkWithoutSound(index) {
+      if (currentMode !== "mode4") return; // Stop if mode changed.
+      const step = sosPattern[index];
+      if (step.state === "on") {
+        document.body.style.backgroundColor = "red";
+      } else {
+        document.body.style.backgroundColor = "black";
+      }
+      const nextIndex = (index + 1) % sosPattern.length;
+      blinkTimeoutId = setTimeout(() => sosBlinkWithoutSound(nextIndex), step.duration);
+    }
+
+    // Keyboard controls:
+    // Press "4" to toggle SOS mode (Morse code) without sound.
+    // Press "6" to toggle SOS mode (Morse code) with sound.
+    document.addEventListener("keydown", (e) => {
+      if (e.key === "4") {
+        if (currentMode === "mode4") {
+          currentMode = "none";
+          clearBlink();
+          document.body.style.backgroundColor = "red";
+        } else {
+          currentMode = "mode4";
+          clearBlink();
+          sosBlinkWithoutSound(0);
+        }
+      } else if (e.key === '5') {
+        // Redirect to a new HTML page when 5 is pressed
+        window.location.href = 'list.html'; // Replace 'newpage.html' with your file
+      } else if (e.key === "6") {
+        if (currentMode === "mode6") {
+          currentMode = "none";
+          clearBlink();
+          document.body.style.backgroundColor = "red";
+        } else {
+          currentMode = "mode6";
+          clearBlink();
+          sosBlinkWithSound(0);
+        }
+      }
+    });
+  </script>
+</body>
+</html>
