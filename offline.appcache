@@ -1,0 +1,26 @@
+CACHE MANIFEST
+# Version 1.0.0
+
+CACHE:
+black.html
+blue.html
+fallback.html
+green.html
+index.html
+list.html
+orange.html
+pink.html
+purple.html
+red.html
+sos.html
+white.html
+yellow.html
+flashlight-32-white.png
+flashlight-32-blue.png
+flashlight-32.png
+
+FALLBACK:
+/ fallback.html
+
+NETWORK:
+*
