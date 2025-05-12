@@ -23,30 +23,10 @@
         color: white;
         z-index: 2;
       }
-
-      h1 {
-        position: absolute;
-        top: 10px;
-        width: 100%;
-        height: auto;
-        text-align: center;
-        font-size: 14px;
-        color: white;
-        z-index: 2;
-      }
-
-      #sos-icon {
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        z-index: 3; /* Ensures the icon is always above the overlay */
-      }
   </style>
 </head>
 <body>
     <h3>Press 4 to toggle SOS blinking in morse code without sound, Press 6 to toggle SOS blinking in morse code with sound and Press 5 for more Color Options</h3>
-    <div id="sos-icon"><h1>SOS</h1></div>
   <script>
     // Global state: currentMode can be "none", "mode4" (SOS without sound), or "mode6" (SOS with sound).
     let currentMode = "none";
