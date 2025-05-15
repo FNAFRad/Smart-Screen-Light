@@ -1,13 +1,13 @@
 {
   "version": "1.0.0",
-  "name": "Smart Screen Light",
-  "launch_path": "/Smart-Screen-Light/index.html",
+  "name": "Smart Glow",
+  "launch_path": "/Smart-Glow-App/index.html",
   "type": "web",
   "subtitle": "Turn Your Phone into a Light Source",
-  "description": "A modern screen light for KaiOS with 8+ colors and adjustable brightness — perfect for devices without a flashlight or when you need more than just white light.",
+  "description": "A modern screen light for KaiOS with 8+ colors, adjustable brightness and SOS Blinking — perfect for devices without a flashlight, when you need more than just white light, and a SOS Blinking Mode.",
   "icons": {
-    "56": "/Smart-Screen-Light/Smart_Light_56.png",
-    "112": "/Smart-Screen-Light/Smart_Light_112.png"
+    "56": "/Smart-Screen-Light/Smart_Glow_56.png",
+    "112": "/Smart-Screen-Light/Smart_Glow_112.png"
   },
   "developer": {
     "name": "FNAFRad Studios",
@@ -18,9 +18,9 @@
   ],
   "locales": {
     "en-US": {
-      "name": "Smart Screen Light",
+      "name": "Smart Glow",
       "subtitle": "Turn Your Phone into a Light Source",
-      "description": "A modern screen light for KaiOS with 8+ colors and adjustable brightness — perfect for devices without a flashlight or when you need more than just white light."
+      "description": "A modern screen light for KaiOS with 8+ colors, adjustable brightness and SOS Blinking — perfect for devices without a flashlight, when you need more than just white light, and a SOS Blinking Mode."
     }
   },
   "default_locale": "en-US",
