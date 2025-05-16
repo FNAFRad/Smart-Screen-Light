@@ -46,8 +46,14 @@
       gainNode.connect(audioCtx.destination);
       oscillator.frequency.value = frequency;
       gainNode.gain.value = volume;
-      oscillator.start();
-      setTimeout(() => oscillator.stop(), duration);
+      
+      // Start oscillator at the current time to synchronize properly
+      oscillator.start(audioCtx.currentTime);
+
+      // Stop oscillator after the specified duration
+      setTimeout(() => {
+        oscillator.stop();
+      }, duration);
     }
 
     // Morse code durations in milliseconds.
