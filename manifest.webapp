@@ -6,8 +6,8 @@
   "subtitle": "Turn Your Phone into a Light Source",
   "description": "A modern screen light for KaiOS with 8+ colors, adjustable brightness and SOS Blinking — perfect for devices without a flashlight, when you need more than just white light, and a SOS Blinking Mode.",
   "icons": {
-    "56": "/Smart-Screen-Light/Smart_Glow_56.png",
-    "112": "/Smart-Screen-Light/Smart_Glow_112.png"
+    "56": "/Smart-Glow-App/Smart_Glow_56.png",
+    "112": "/Smart-Glow-App/Smart_Glow_112.png"
   },
   "developer": {
     "name": "FNAFRad Studios",
