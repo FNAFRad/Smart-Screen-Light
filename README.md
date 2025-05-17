@@ -1,5 +1,5 @@
 <h1>This is a Smart Screen Glow For KaiOS!</h1>
-<h1>This is used if the Feature Phone doesn't have a Torch Light, The user wants to Have more color lights and/or wants a SOS Blinking mode</h1>
+<h1>This is used if the Feature Phone doesn't have a Torch Light, The user wants to Have more color lights and If they want a SOS Blinking Light!</h1>
 <h1>Features:</h1>
 <ol>
   <li><h1>Brightness Control (Using the Keys 4 and 6)</h1></li>
