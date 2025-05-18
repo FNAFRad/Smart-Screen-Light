@@ -3,12 +3,13 @@
   "name": "Smart Glow",
   "launch_path": "/Smart-Glow-App/index.html",
   "type": "web",
-  "subtitle": "Turn Your Phone into a Light Source",
+  "subtitle": "Turn Your Phone into a Light Source!",
   "description": "A modern screen light for KaiOS with 8+ colors, adjustable brightness and SOS Blinking — perfect for devices without a flashlight, when you need more than just white light, and a SOS Blinking Mode.",
   "icons": {
     "56": "/Smart-Glow-App/Smart_Glow_56.png",
     "112": "/Smart-Glow-App/Smart_Glow_112.png"
   },
+  "theme_color": "#00B1B4",
   "developer": {
     "name": "FNAFRad Studios",
     "url": "https://github.com/FNAFRad"
@@ -19,12 +20,13 @@
   "locales": {
     "en-US": {
       "name": "Smart Glow",
-      "subtitle": "Turn Your Phone into a Light Source",
+      "subtitle": "Turn Your Phone into a Light Source!",
       "description": "A modern screen light for KaiOS with 8+ colors, adjustable brightness and SOS Blinking — perfect for devices without a flashlight, when you need more than just white light, and a SOS Blinking Mode."
     }
   },
   "default_locale": "en-US",
   "fullscreen": false,
   "cursor": false,
-  "orientation": [ "portrait-primary" ]
+  "appcache_path": "/Smart-Glow-App/offline.appcache",
+  "orientation": [ "portrait-primary", "landscape-primary" ]
 }
