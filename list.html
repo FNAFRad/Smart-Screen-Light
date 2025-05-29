@@ -47,27 +47,20 @@
     #list li.selected {
       background-color: #00bfff;
     }
-    
+
     footer {
       padding: 10px;
       background-color: #444;
       display: flex;
-      justify-content: space-between;
-      font-size: 14px;
+      justify-content: center;
+      align-items: center;
+      font-size: 12px;
       color: white;
-      position: relative;
-    }
-    
-    footer .left {
-      font-weight: bold;
-    }
-    
+      }
+
     footer .center {
-      position: absolute;
-      left: 50%;
-      transform: translateX(-50%);
       font-weight: bold;
-    }        
+      }        
   </style>
 </head>
 <body>
@@ -85,7 +78,6 @@
       <li data-page="black.html">Black</li>    
   </ul>
   <footer>
-    <span class="left">Cancel</span>
     <span class="center">SELECT</span>
   </footer>
   <script>
@@ -123,10 +115,7 @@
         // Navigate to the selected page
         const selectedItem = list[selectedIndex];
         const page = selectedItem.getAttribute('data-page');
-        window.location.href = page;
-      } else if (e.key === 'SoftLeft') {
-        // Go back to the previous page
-        window.history.back();
+        window.location.replace(page);
       }
     });
   
