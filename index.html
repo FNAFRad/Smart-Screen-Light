@@ -30,7 +30,7 @@
       height: 50px;
     }
     
-    h3 {
+    #instructions {
       position: absolute;
       top: 10px;
       width: 100%;
@@ -52,15 +52,12 @@
       transition: opacity 0.2s ease;
       z-index: 1; /* The overlay is now below the icon */
     }
-    h2 {
+    #adtext {
       position: absolute;
-      top: 65%;
-      width: 100%;
-      height: auto;
-      text-align: center;
-      font-size: 16px;
-      color: white;
-      z-index: 2;
+        bottom: 10px;
+        left: 10px;
+        color: white;
+        z-index: 3;
     }
     #ad-container {
       position: absolute;
@@ -80,11 +77,11 @@
       </div>
 
   <!-- Instruction Text -->
-  <h3 id="instructions">Press 6 to increase brightness by 10%, 4 to decrease by 10%, 5 for more Color Options, and 2 for the Ad</h3>
+  <h3 id="instructions">Press 6 to increase brightness by 10%, 4 to decrease by 10%, and 5 for more Color Options</h3>
 
   <!-- Overlay for flashlight effect -->
   <div id="overlay"></div>
-  <h2 id="adtext">Ad</h2>
+  <h4 id="adtext">Ad</h4>
   <div id='ad-container' class="items"></div>
   <script>
     let ad = null;
@@ -149,7 +146,7 @@ document.addEventListener('keydown', (e) => {
       brightness -= 10;
       updateBrightness();
     }
-  } else if (e.key === '2') {
+  } else if (e.key === 'SoftLeft') {
     if (ad) {
       ad.call('click');
     }  
