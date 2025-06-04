@@ -28,5 +28,5 @@
   "fullscreen": false,
   "cursor": false,
   "appcache_path": "/Smart-Glow-App/offline.appcache",
-  "orientation": [ "portrait-primary", "landscape-primary" ]
+  "orientation": [ "portrait-primary" ]
 }
